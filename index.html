@@ -1,0 +1,708 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JobConnect - Portal Lowongan Kerja</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f5f8fc;
+    color: #26364a;
+}
+
+/* NAVBAR */
+header {
+    background: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 12px #00000010;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    color: #1769aa;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+nav a {
+    text-decoration: none;
+    color: #34465e;
+    margin-left: 22px;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: #1685d8;
+}
+
+/* HERO */
+.hero {
+    background: linear-gradient(120deg, #1265a5, #2999df);
+    color: white;
+    padding: 85px 7%;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 17px;
+    margin-bottom: 30px;
+}
+
+.search-box {
+    background: white;
+    max-width: 750px;
+    margin: auto;
+    padding: 10px;
+    border-radius: 12px;
+    display: flex;
+    gap: 10px;
+}
+
+.search-box input,
+.search-box select {
+    flex: 1;
+    border: none;
+    padding: 13px;
+    outline: none;
+    min-width: 0;
+}
+
+button {
+    border: none;
+    background: #126db3;
+    color: white;
+    padding: 13px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #084e86;
+}
+
+/* GENERAL SECTION */
+section {
+    padding: 65px 7%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    font-size: 30px;
+    color: #174d79;
+    margin-bottom: 10px;
+}
+
+/* STATISTIK */
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: -35px;
+    position: relative;
+}
+
+.stat-card {
+    background: white;
+    padding: 22px 35px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px #00000012;
+    text-align: center;
+    min-width: 180px;
+}
+
+.stat-card h2 {
+    color: #1685d8;
+    font-size: 28px;
+}
+
+/* KATEGORI */
+.categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 18px;
+}
+
+.category {
+    background: white;
+    text-align: center;
+    padding: 25px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: .3s;
+    border: 1px solid #e6edf5;
+}
+
+.category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px #00000012;
+}
+
+.category span {
+    font-size: 30px;
+}
+
+.category h3 {
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+/* LOWONGAN */
+.jobs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 22px;
+}
+
+.job-card {
+    background: white;
+    border-radius: 13px;
+    padding: 25px;
+    border: 1px solid #e5edf5;
+    transition: .3s;
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 22px #00000012;
+}
+
+.company-logo {
+    background: #e5f3ff;
+    color: #1769aa;
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 18px;
+}
+
+.job-card h3 {
+    color: #174d79;
+    margin-bottom: 7px;
+}
+
+.company {
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.job-info {
+    color: #66768a;
+    font-size: 14px;
+    line-height: 2;
+}
+
+.salary {
+    color: #1685d8;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.tag {
+    display: inline-block;
+    padding: 5px 10px;
+    background: #eaf5ff;
+    color: #126db3;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+/* ABOUT */
+.about {
+    background: #eaf4fc;
+    text-align: center;
+}
+
+.about p {
+    max-width: 800px;
+    margin: auto;
+    line-height: 1.9;
+    color: #56677b;
+}
+
+/* FORM */
+.form-container {
+    max-width: 650px;
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    margin: auto;
+    box-shadow: 0 5px 20px #00000010;
+}
+
+.form-container input,
+.form-container select,
+.form-container textarea {
+    width: 100%;
+    padding: 13px;
+    margin: 10px 0 18px;
+    border: 1px solid #dce5ef;
+    border-radius: 7px;
+    outline-color: #1685d8;
+}
+
+.form-container label {
+    font-weight: 600;
+}
+
+.form-container button {
+    width: 100%;
+}
+
+/* FOOTER */
+footer {
+    background: #123a5b;
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+}
+
+footer p {
+    margin-top: 10px;
+    color: #c7d8e8;
+}
+
+.no-result {
+    text-align: center;
+    grid-column: 1 / -1;
+    padding: 30px;
+}
+
+/* RESPONSIVE */
+@media(max-width: 700px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    nav a {
+        margin: 0;
+        font-size: 13px;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .search-box input,
+    .search-box select {
+        width: 100%;
+    }
+
+    .stats {
+        margin-top: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <div class="logo">JobConnect.</div>
+    <nav>
+        <a href="#beranda">Beranda</a>
+        <a href="#kategori">Kategori</a>
+        <a href="#lowongan">Lowongan</a>
+        <a href="#tentang">Tentang Kami</a>
+        <a href="#lamar">Lamar Kerja</a>
+        <a href="#kontak">Kontak</a>
+    </nav>
+</header>
+
+<!-- BERANDA -->
+<div class="hero" id="beranda">
+    <h1>Temukan Pekerjaan Impianmu!</h1>
+    <p>Raih masa depan yang lebih baik bersama JobConnect.</p>
+
+    <div class="search-box">
+        <input type="text" id="searchInput"
+        placeholder="Cari posisi pekerjaan...">
+
+        <select id="locationFilter">
+            <option value="">Semua Lokasi</option>
+            <option value="Bandung">Bandung</option>
+            <option value="Jakarta">Jakarta</option>
+            <option value="Surabaya">Surabaya</option>
+            <option value="Yogyakarta">Yogyakarta</option>
+        </select>
+
+        <button onclick="searchJobs()">Cari</button>
+    </div>
+</div>
+
+<!-- STATISTIK -->
+<div class="stats">
+    <div class="stat-card">
+        <h2>500+</h2>
+        <p>Lowongan Kerja</p>
+    </div>
+
+    <div class="stat-card">
+        <h2>120+</h2>
+        <p>Perusahaan</p>
+    </div>
+
+    <div class="stat-card">
+        <h2>2.000+</h2>
+        <p>Pencari Kerja</p>
+    </div>
+</div>
+
+<!-- KATEGORI -->
+<section id="kategori">
+    <div class="section-title">
+        <h2>Kategori Pekerjaan</h2>
+        <p>Pilih bidang pekerjaan sesuai minat dan keahlianmu.</p>
+    </div>
+
+    <div class="categories">
+        <div class="category" onclick="filterCategory('IT')">
+            <span>💻</span>
+            <h3>Teknologi & IT</h3>
+        </div>
+
+        <div class="category" onclick="filterCategory('Administrasi')">
+            <span>📁</span>
+            <h3>Administrasi</h3>
+        </div>
+
+        <div class="category" onclick="filterCategory('Pendidikan')">
+            <span>📚</span>
+            <h3>Pendidikan</h3>
+        </div>
+
+        <div class="category" onclick="filterCategory('Kesehatan')">
+            <span>🏥</span>
+            <h3>Kesehatan</h3>
+        </div>
+
+        <div class="category" onclick="filterCategory('Desain')">
+            <span>🎨</span>
+            <h3>Desain Kreatif</h3>
+        </div>
+
+        <div class="category" onclick="filterCategory('Marketing')">
+            <span>📈</span>
+            <h3>Marketing</h3>
+        </div>
+    </div>
+</section>
+
+<!-- LOWONGAN -->
+<section id="lowongan">
+    <div class="section-title">
+        <h2>Lowongan Pekerjaan Terbaru</h2>
+        <p>Temukan kesempatan karier terbaik untukmu.</p>
+    </div>
+
+    <div class="jobs" id="jobList">
+
+        <div class="job-card" data-category="IT" data-location="Bandung">
+            <div class="company-logo">💻</div>
+            <span class="tag">Full Time</span>
+            <h3>Web Developer</h3>
+            <p class="company">PT Digital Indonesia</p>
+            <div class="job-info">
+                📍 Bandung<br>
+                🎓 Minimal S1 Informatika<br>
+                💼 Pengalaman 1 Tahun
+            </div>
+            <div class="salary">Rp5.000.000 - Rp8.000.000</div>
+            <button onclick="applyJob('Web Developer')">Lamar Sekarang</button>
+        </div>
+
+        <div class="job-card" data-category="Desain" data-location="Jakarta">
+            <div class="company-logo">🎨</div>
+            <span class="tag">Full Time</span>
+            <h3>Graphic Designer</h3>
+            <p class="company">Creative Studio</p>
+            <div class="job-info">
+                📍 Jakarta<br>
+                🎓 Minimal SMA/SMK<br>
+                💼 Pengalaman 1 Tahun
+            </div>
+            <div class="salary">Rp4.000.000 - Rp6.000.000</div>
+            <button onclick="applyJob('Graphic Designer')">Lamar Sekarang</button>
+        </div>
+
+        <div class="job-card" data-category="Administrasi" data-location="Surabaya">
+            <div class="company-logo">📁</div>
+            <span class="tag">Full Time</span>
+            <h3>Staff Administrasi</h3>
+            <p class="company">PT Maju Bersama</p>
+            <div class="job-info">
+                📍 Surabaya<br>
+                🎓 Minimal SMA/SMK<br>
+                💼 Fresh Graduate
+            </div>
+            <div class="salary">Rp3.500.000 - Rp5.000.000</div>
+            <button onclick="applyJob('Staff Administrasi')">Lamar Sekarang</button>
+        </div>
+
+        <div class="job-card" data-category="Marketing" data-location="Yogyakarta">
+            <div class="company-logo">📈</div>
+            <span class="tag">Part Time</span>
+            <h3>Digital Marketing</h3>
+            <p class="company">Media Creative</p>
+            <div class="job-info">
+                📍 Yogyakarta<br>
+                🎓 Minimal D3<br>
+                💼 Pengalaman 1 Tahun
+            </div>
+            <div class="salary">Rp3.000.000 - Rp5.000.000</div>
+            <button onclick="applyJob('Digital Marketing')">Lamar Sekarang</button>
+        </div>
+
+        <div class="job-card" data-category="Pendidikan" data-location="Bandung">
+            <div class="company-logo">📚</div>
+            <span class="tag">Full Time</span>
+            <h3>Guru Bahasa Inggris</h3>
+            <p class="company">Smart Education</p>
+            <div class="job-info">
+                📍 Bandung<br>
+                🎓 Minimal S1 Pendidikan<br>
+                💼 Fresh Graduate
+            </div>
+            <div class="salary">Rp3.500.000 - Rp5.500.000</div>
+            <button onclick="applyJob('Guru Bahasa Inggris')">Lamar Sekarang</button>
+        </div>
+
+        <div class="job-card" data-category="Kesehatan" data-location="Jakarta">
+            <div class="company-logo">🏥</div>
+            <span class="tag">Full Time</span>
+            <h3>Staff Kesehatan</h3>
+            <p class="company">Klinik Sehat</p>
+            <div class="job-info">
+                📍 Jakarta<br>
+                🎓 Minimal D3 Kesehatan<br>
+                💼 Pengalaman 1 Tahun
+            </div>
+            <div class="salary">Rp4.000.000 - Rp6.000.000</div>
+            <button onclick="applyJob('Staff Kesehatan')">Lamar Sekarang</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- TENTANG -->
+<section class="about" id="tentang">
+    <div class="section-title">
+        <h2>Tentang JobConnect</h2>
+    </div>
+
+    <p>
+        JobConnect merupakan platform pencarian pekerjaan yang
+        membantu masyarakat menemukan peluang karier sesuai
+        dengan kemampuan, pendidikan, dan pengalaman mereka.
+        Kami menyediakan berbagai informasi lowongan pekerjaan
+        dari berbagai bidang dan perusahaan. Dengan JobConnect,
+        proses mencari pekerjaan menjadi lebih mudah, cepat,
+        dan praktis.
+    </p>
+</section>
+
+<!-- FORM LAMARAN -->
+<section id="lamar">
+    <div class="section-title">
+        <h2>Formulir Lamaran Pekerjaan</h2>
+        <p>Isi data dirimu untuk mengajukan lamaran pekerjaan.</p>
+    </div>
+
+    <div class="form-container">
+        <form id="applicationForm">
+
+            <label>Nama Lengkap</label>
+            <input type="text" id="nama"
+            placeholder="Masukkan nama lengkap" required>
+
+            <label>Email</label>
+            <input type="email" id="email"
+            placeholder="Masukkan email" required>
+
+            <label>Nomor Telepon</label>
+            <input type="tel" id="telepon"
+            placeholder="Masukkan nomor telepon" required>
+
+            <label>Pendidikan Terakhir</label>
+            <select id="pendidikan" required>
+                <option value="">Pilih pendidikan</option>
+                <option>SMA/SMK</option>
+                <option>D3</option>
+                <option>S1</option>
+                <option>S2</option>
+            </select>
+
+            <label>Posisi yang Dilamar</label>
+            <input type="text" id="posisi"
+            placeholder="Contoh: Web Developer" required>
+
+            <label>Pengalaman Kerja</label>
+            <textarea id="pengalaman" rows="4"
+            placeholder="Ceritakan pengalaman kerjamu"></textarea>
+
+            <label>Upload CV (PDF)</label>
+            <input type="file" id="cv"
+            accept=".pdf" required>
+
+            <button type="submit">Kirim Lamaran</button>
+        </form>
+    </div>
+</section>
+
+<!-- KONTAK -->
+<section id="kontak">
+    <div class="section-title">
+        <h2>Hubungi Kami</h2>
+        <p>Butuh informasi lebih lanjut? Hubungi tim JobConnect.</p>
+        <br>
+        <p>📧 Email: jobconnect@email.com</p>
+        <p>📱 WhatsApp: 0812-3456-7890</p>
+        <p>📍 Indonesia</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <h2>JobConnect.</h2>
+    <p>Temukan pekerjaan, bangun masa depan.</p>
+    <p>&copy; 2026 JobConnect. All Rights Reserved.</p>
+</footer>
+
+<script>
+
+// PENCARIAN PEKERJAAN
+function searchJobs() {
+    const keyword = document.getElementById("searchInput")
+        .value.toLowerCase();
+
+    const location = document.getElementById("locationFilter")
+        .value.toLowerCase();
+
+    const cards = document.querySelectorAll(".job-card");
+    let found = 0;
+
+    cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        const jobLocation = card.dataset.location.toLowerCase();
+
+        const matchKeyword = text.includes(keyword);
+        const matchLocation = !location || jobLocation === location;
+
+        if (matchKeyword && matchLocation) {
+            card.style.display = "block";
+            found++;
+        } else {
+            card.style.display = "none";
+        }
+    });
+
+    showNoResult(found);
+}
+
+// FILTER KATEGORI
+function filterCategory(category) {
+    document.getElementById("lowongan").scrollIntoView();
+
+    const cards = document.querySelectorAll(".job-card");
+    let found = 0;
+
+    cards.forEach(card => {
+        if (card.dataset.category === category) {
+            card.style.display = "block";
+            found++;
+        } else {
+            card.style.display = "none";
+        }
+    });
+
+    showNoResult(found);
+}
+
+// HASIL KOSONG
+function showNoResult(found) {
+    let message = document.getElementById("noResult");
+
+    if (!message) {
+        message = document.createElement("p");
+        message.id = "noResult";
+        message.className = "no-result";
+        document.getElementById("jobList").appendChild(message);
+    }
+
+    message.textContent = found === 0
+        ? "Maaf, lowongan pekerjaan tidak ditemukan."
+        : "";
+}
+
+// TOMBOL LAMAR
+function applyJob(position) {
+    document.getElementById("posisi").value = position;
+    document.getElementById("lamar").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+// FORM LAMARAN
+document.getElementById("applicationForm")
+.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const cv = document.getElementById("cv").files[0];
+
+    if (!cv || cv.type !== "application/pdf") {
+        alert("Silakan upload CV dalam format PDF.");
+        return;
+    }
+
+    alert("Terima kasih! Data lamaran berhasil divalidasi. Untuk mengirimkannya ke perusahaan, website perlu dihubungkan dengan sistem backend.");
+
+    this.reset();
+});
+
+</script>
+
+</body>
+</html>
